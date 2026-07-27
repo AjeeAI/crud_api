@@ -54,3 +54,24 @@ def create_task(task_in: TaskCreate):
     next_id += 1
     return new_task
 
+# Stage 4: Update and Delete endpoints
+@app.put("/tasks/{id}")
+def update_task(id: int, task_in: TaskUpdate):
+    for task in tasks:
+        if task["id"] == id:
+            if task_in.title is not None:
+                if not task_in.title.strip():
+                    return JSONResponse(status_code=400, content={"error": "Title cannot be empty"})
+                task["title"] = task_in.title
+            if task_in.done is not None:
+                task["done"] = task_in.done
+            return task
+    return JSONResponse(status_code=404, content={"error": f"Task {id} not found"})
+
+@app.delete("/tasks/{id}", status_code=204)
+def delete_task(id: int):
+    for i, task in enumerate(tasks):
+        if task["id"] == id:
+            del tasks[i]
+            return
+    return JSONResponse(status_code=404, content={"error": f"Task {id} not found"})
