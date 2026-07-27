@@ -41,3 +41,16 @@ def get_task(id: int):
             return task
     return JSONResponse(status_code=404, content={"error": f"Task {id} not found"})
 
+
+# Stage 3: Create endpoint
+@app.post("/tasks", status_code=201)
+def create_task(task_in: TaskCreate):
+    global next_id
+    if not task_in.title.strip():
+        return JSONResponse(status_code=400, content={"error": "Title cannot be empty"})
+
+    new_task = {"id": next_id, "title": task_in.title, "done": False}
+    tasks.append(new_task)
+    next_id += 1
+    return new_task
+
