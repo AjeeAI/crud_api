@@ -5,7 +5,7 @@ from typing import Optional
 
 app = FastAPI(title="Task API", version="1.0")
 
-# Stage 2: In-memory list pre-filled with 3 tasks
+# Stage 2: In-memory list with 3 tasks
 tasks = [
     {"id": 1, "title": "Buy milk", "done": False},
     {"id": 2, "title": "Read HTTP overview", "done": True},
