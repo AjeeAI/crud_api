@@ -29,3 +29,15 @@ def get_root():
 def health_check():
     return {"status": "ok"}
 
+# Stage 2: Read endpoints
+@app.get("/tasks")
+def get_tasks():
+    return tasks
+
+@app.get("/tasks/{id}")
+def get_task(id: int):
+    for task in tasks:
+        if task["id"] == id:
+            return task
+    return JSONResponse(status_code=404, content={"error": f"Task {id} not found"})
+
