@@ -18,11 +18,12 @@ A small CRUD API that manages an in-memory to-do list. Built for the FlyRank Int
 | **Update** | PUT | `/tasks/{id}` | Change a task's title or status |
 | **Delete** | DELETE | `/tasks/{id}` | Remove a task |
 
+
+![Swagger UI Screenshot](https://github.com/user-attachments/assets/fdcde219-ce37-4085-a90b-a7fb13410472)
+
 ## Sample Request
 
 ```bash
 curl -i -X POST http://localhost:8000/tasks \
 -H "Content-Type: application/json" \
 -d '{"title":"Buy milk"}'
-
-![Swagger UI Screenshot](https://github.com/user-attachments/assets/fdcde219-ce37-4085-a90b-a7fb13410472)
